@@ -1,0 +1,45 @@
+syntax = "proto3";
+package reservation;
+// Définition du message TV show
+message Reservation {
+string id = 1;
+string customer_id  = 2;
+string start_date  = 3;
+string end_date =4;
+string price =5;
+string  car_id=6;
+// Ajouter d'autres champs de données pour les séries TV au besoin
+}
+// Définition des messages de requête et de réponse pour les méthodes
+message GetReservationRequest {
+string reservation_id = 1;
+}
+message GetReservationResponse {
+Reservation reservation = 1;
+}
+message SearchReservationsRequest {
+string query = 1;
+}
+message SearchReservationsResponse {
+repeated Reservation reservation = 1;
+}
+
+message AddReservationRequest {
+string customer_id  = 1;
+string start_date  = 2;
+string end_date =3;
+string price =4;
+string  car_id=5;
+}
+
+message AddReservationResponse {
+    Reservation reservation = 1;
+}
+// Définition du service de séries TV
+service ReservationService {
+rpc GetReservation(GetReservationRequest) returns (GetReservationResponse);
+rpc SearchReservations(SearchReservationsRequest) returns (SearchReservationsResponse);
+rpc AddReservation(AddReservationRequest) returns (AddReservationResponse);
+
+// Ajouter d'autres méthodes au besoin
+}
